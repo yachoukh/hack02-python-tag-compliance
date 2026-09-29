@@ -1,0 +1,30 @@
+requiredTags:
+  owner:
+    description: Owner alias or email address responsible for the resource.
+    required: true
+    nonEmpty: true
+  costCenter:
+    description: Finance cost center in CC-1234 format.
+    required: true
+    pattern: "^CC-\\d{4}$"
+  environment:
+    description: Deployment environment.
+    required: true
+    allowedValues:
+      - dev
+      - test
+      - prod
+  application:
+    description: Application or workload name.
+    required: true
+    nonEmpty: true
+  dataClassification:
+    description: Highest data classification stored or processed.
+    required: true
+    allowedValues:
+      - public
+      - internal
+      - confidential
+optionalTags:
+  purpose:
+    expectedValue: copilot-hackathon

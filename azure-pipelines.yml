@@ -1,0 +1,55 @@
+trigger:
+  branches:
+    include:
+      - '*'
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+  - stage: Test
+    jobs:
+      - job: Test
+        steps:
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: '3.12'
+          - script: |
+              python -m pip install --upgrade pip
+              python -m pip install -e .[dev]
+              ruff check .
+              ruff format --check .
+              pytest --junitxml=$(Common.TestResultsDirectory)/pytest.xml --cov=tag_compliance --cov-report=xml:$(Build.SourcesDirectory)/coverage.xml
+            displayName: Test and lint
+          - task: PublishTestResults@2
+            inputs:
+              testResultsFormat: JUnit
+              testResultsFiles: $(Common.TestResultsDirectory)/pytest.xml
+            condition: succeededOrFailed()
+          - task: PublishCodeCoverageResults@2
+            inputs:
+              codeCoverageTool: Cobertura
+              summaryFileLocation: $(Build.SourcesDirectory)/coverage.xml
+            condition: succeededOrFailed()
+
+  - stage: LiveReport
+    dependsOn: Test
+    condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/solution'), startsWith(variables['Build.SourceBranch'], 'refs/heads/ready/')))
+    jobs:
+      - job: LiveReport
+        steps:
+          - task: AzureCLI@2
+            inputs:
+              azureSubscription: sc-copilot-hack-sandbox
+              scriptType: bash
+              scriptLocation: inlineScript
+              inlineScript: |
+                python -m pip install --upgrade pip
+                python -m pip install -e .
+                export AZURE_SUBSCRIPTION_ID=$(az account show --query id -o tsv)
+                python -m tag_compliance --policy tag-policy.yaml --resource-group rg-copilot-hack-tags-demo --format md --output $(Build.ArtifactStagingDirectory)/tag-report.md --no-fail
+                python -m tag_compliance --policy tag-policy.yaml --resource-group rg-copilot-hack-tags-demo --format csv --output $(Build.ArtifactStagingDirectory)/tag-report.csv --no-fail
+                cat $(Build.ArtifactStagingDirectory)/tag-report.md
+            displayName: Generate live tag report
+          - publish: $(Build.ArtifactStagingDirectory)
+            artifact: tag-report

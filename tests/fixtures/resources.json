@@ -1,0 +1,145 @@
+[
+  {
+    "id": "/subscriptions/000/resourceGroups/rg-demo/providers/Microsoft.Network/networkSecurityGroups/nsg-good-01",
+    "name": "nsg-good-01",
+    "type": "Microsoft.Network/networkSecurityGroups",
+    "resourceGroup": "rg-demo",
+    "location": "swedencentral",
+    "tags": {
+      "owner": "platform@azultech.local",
+      "costCenter": "CC-1001",
+      "environment": "dev",
+      "application": "tag-demo",
+      "dataClassification": "internal",
+      "purpose": "copilot-hackathon"
+    }
+  },
+  {
+    "id": "/subscriptions/000/resourceGroups/rg-demo/providers/Microsoft.Network/routeTables/rt-good-01",
+    "name": "rt-good-01",
+    "type": "Microsoft.Network/routeTables",
+    "resourceGroup": "rg-demo",
+    "location": "swedencentral",
+    "tags": {
+      "owner": "network",
+      "costCenter": "CC-1002",
+      "environment": "test",
+      "application": "routing",
+      "dataClassification": "public",
+      "purpose": "copilot-hackathon"
+    }
+  },
+  {
+    "id": "/subscriptions/000/resourceGroups/rg-demo/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-missing",
+    "name": "id-missing",
+    "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
+    "resourceGroup": "rg-demo",
+    "location": "swedencentral",
+    "tags": {
+      "environment": "dev",
+      "application": "identity",
+      "dataClassification": "internal",
+      "purpose": "copilot-hackathon"
+    }
+  },
+  {
+    "id": "/subscriptions/000/resourceGroups/rg-demo/providers/Microsoft.Network/virtualNetworks/vnet-bad-env",
+    "name": "vnet-bad-env",
+    "type": "Microsoft.Network/virtualNetworks",
+    "resourceGroup": "rg-demo",
+    "location": "swedencentral",
+    "tags": {
+      "owner": "network",
+      "costCenter": "CC-1003",
+      "environment": "Production",
+      "application": "network-core",
+      "dataClassification": "confidential",
+      "purpose": "copilot-hackathon"
+    }
+  },
+  {
+    "id": "/subscriptions/000/resourceGroups/rg-demo/providers/Microsoft.Storage/storageAccounts/stbadcost",
+    "name": "stbadcost",
+    "type": "Microsoft.Storage/storageAccounts",
+    "resourceGroup": "rg-demo",
+    "location": "swedencentral",
+    "tags": {
+      "owner": "storage",
+      "costCenter": "1234",
+      "environment": "prod",
+      "application": "archive",
+      "dataClassification": "confidential",
+      "purpose": "copilot-hackathon"
+    }
+  },
+  {
+    "id": "/subscriptions/000/resourceGroups/rg-demo/providers/Microsoft.Network/networkSecurityGroups/nsg-purpose-only",
+    "name": "nsg-purpose-only",
+    "type": "Microsoft.Network/networkSecurityGroups",
+    "resourceGroup": "rg-demo",
+    "location": "swedencentral",
+    "tags": {
+      "purpose": "copilot-hackathon"
+    }
+  },
+  {
+    "id": "/subscriptions/000/resourceGroups/rg-demo/providers/Microsoft.Network/routeTables/rt-owner-case",
+    "name": "rt-owner-case",
+    "type": "Microsoft.Network/routeTables",
+    "resourceGroup": "rg-demo",
+    "location": "swedencentral",
+    "tags": {
+      "Owner": "network",
+      "costCenter": "CC-1004",
+      "environment": "dev",
+      "application": "case-demo",
+      "dataClassification": "internal",
+      "purpose": "copilot-hackathon"
+    }
+  },
+  {
+    "id": "/subscriptions/000/resourceGroups/rg-demo/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-bad-classification",
+    "name": "id-bad-classification",
+    "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
+    "resourceGroup": "rg-demo",
+    "location": "swedencentral",
+    "tags": {
+      "owner": "identity",
+      "costCenter": "CC-1005",
+      "environment": "test",
+      "application": "identity",
+      "dataClassification": "secret",
+      "purpose": "copilot-hackathon"
+    }
+  },
+  {
+    "id": "/subscriptions/000/resourceGroups/rg-demo/providers/Microsoft.Network/networkSecurityGroups/nsg-empty-app",
+    "name": "nsg-empty-app",
+    "type": "Microsoft.Network/networkSecurityGroups",
+    "resourceGroup": "rg-demo",
+    "location": "swedencentral",
+    "tags": {
+      "owner": "security",
+      "costCenter": "CC-1006",
+      "environment": "dev",
+      "application": "",
+      "dataClassification": "internal",
+      "purpose": "copilot-hackathon"
+    }
+  },
+  {
+    "id": "/subscriptions/000/resourceGroups/rg-demo/providers/Microsoft.Network/virtualNetworks/vnet-good-prod",
+    "name": "vnet-good-prod",
+    "type": "Microsoft.Network/virtualNetworks",
+    "resourceGroup": "rg-demo",
+    "location": "swedencentral",
+    "tags": {
+      "owner": "network@azultech.local",
+      "costCenter": "CC-1007",
+      "environment": "prod",
+      "application": "network-prod",
+      "dataClassification": "confidential",
+      "purpose": "copilot-hackathon"
+    }
+  }
+]
